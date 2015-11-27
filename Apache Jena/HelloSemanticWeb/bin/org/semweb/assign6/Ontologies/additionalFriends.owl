@@ -1,0 +1,24 @@
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+
+
+Ontology(<http://org.semweb/assign6/people#>
+
+Declaration(Class(<http://org.semweb/assign6/people#Individual>))
+Declaration(ObjectProperty(<http://org.semweb/assign6/people#hasFriend>))
+Declaration(DataProperty(<http://org.semweb/assign6/people#hasName>))
+Declaration(NamedIndividual(<http://org.semweb/assign6/people#I1>))
+Declaration(NamedIndividual(<http://org.semweb/assign6/people#I2>))
+Declaration(NamedIndividual(<http://org.semweb/assign6/people#I3>))
+Declaration(NamedIndividual(<http://org.semweb/assign6/people#Mr._Owl>))
+Declaration(NamedIndividual(<http://org.semweb/assign6/people#Semantic_O._Web>))
+ClassAssertion(<http://org.semweb/assign6/people#Individual> <http://org.semweb/assign6/people#I1>)
+ObjectPropertyAssertion(<http://org.semweb/assign6/people#hasFriend> <http://org.semweb/assign6/people#I1> <http://org.semweb/assign6/people#Semantic_O._Web>)
+ObjectPropertyAssertion(<http://org.semweb/assign6/people#hasFriend> <http://org.semweb/assign6/people#I1> <http://org.semweb/assign6/people#Mr._Owl>)
+DataPropertyAssertion(<http://org.semweb/assign6/people#hasName> <http://org.semweb/assign6/people#I1> "Sem Web")
+ClassAssertion(<http://org.semweb/assign6/people#Individual> <http://org.semweb/assign6/people#I2>)
+ClassAssertion(<http://org.semweb/assign6/people#Individual> <http://org.semweb/assign6/people#I3>)
+)

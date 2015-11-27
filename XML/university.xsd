@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- definition of simple elements -->
+<xs:element name="univname" type="string"/>
+<xs:element name="first name" type="string"/>
+<xs:element name="middle name" type="string"/>
+<xs:element name="last name" type="string"/>
+<xs:element name="rank" type="positiveInteger"/>
+<xs:element name="course" type="string"/>
+<xs:element name="designation" type="string">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="Assistant Professor"/>
+        <xs:enumeration value="Associate Professor"/>
+        <xs:enumeration value="Senior Professor"/>
+    </xs:restriction>
+</xs:element>
+<xs:element name="depname" type="string"/>
+<xs:element name="country" type="string"/>
+<xs:element name="city" type="string"/>
+<xs:element name="zipcode" type="positiveInteger"/>
+<xs:element name="ID" type="ID"/>
+<xs:element name="ISDN" type="string"/>
+<xs:element name="year" type="string"/>
+<xs:element name="location" type="string"/>
+<xs:element name="capacity" type="string"/>
+
+<!-- definition of attributes -->
+<xs:attribute name="universityid" type="string"/>
+<xs:attribute name="speaks" type="string"/>
+
+<!-- definition of complex elements -->
+
+
+<xs:element name="room">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="location" maxOccurs="1"/>	  
+      <xs:element ref="capacity" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="publication">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="label" maxOccurs="1"/>	  
+      <xs:element ref="isdn" minOccurs="0" maxOccurs="1"/>	  
+      <xs:element ref="year" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="address">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="country" maxOccurs="1"/>
+      <xs:element ref="city" maxOccurs="1"/>
+	  <xs:element ref="zipcode" maxOccurs="1"/>	  
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="department">
+  <xs:complexType>
+    <xs:all>	  
+      <xs:element ref="depname" maxOccurs="unbounded"/>	
+      <xs:element ref="course" maxOccurs="unbounded"/>	
+	  <xs:element ref="designation" maxOccurs="unbounded"/>	
+    </xs:all>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="faculty">
+  <xs:complexType name="extendfaculty">
+    <xs:sequence>
+      <xs:element ref="first name" maxOccurs="1"/>	  
+      <xs:element ref="middle name" minOccurs="0" maxOccurs="1"/>	  
+      <xs:element ref="last name" maxOccurs="1"/>
+      <xs:element ref="rank"/>
+      <xs:element ref="department"/>
+    </xs:sequence>
+	<xs:attribute name="speaks" type="Language" use="default" value="en"/> 
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="facultyDetails">
+  <xs:complexType>
+    <xs:extension base = "extendfaculty">
+    <xs:sequence>
+      <xs:element name="email" type="string" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:extension>	
+	<xs:attribute name="speaks" type="Language" use="default" value="en"/> 
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="hod">
+  <xs:complexType>
+    <xs:restriction base = "extendfaculty">
+    <xs:sequence>
+      <xs:element name="rank" type="string" use="required"/>
+    </xs:sequence>
+  </xs:restriction>
+  </xs:complexType>  
+</xs:element>
+
+
+
+<xs:element name="university">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="univname" maxOccurs="unbounded"/>
+      <xs:element ref="faculty" maxOccurs="unbounded"/>
+      <xs:element ref="mainaddress" minOccurs="1"/>
+	  <xs:element ref="publications" minOccurs="0" maxOccurs="unbounded"/>	  
+      <xs:element ref="rooms" maxOccurs="unbounded"/>
+    </xs:sequence>	
+	<xs:attribute ref="universityid" use="required"/>
+  </xs:complexType>
+</xs:element>
+
+
+<xs:element name="institution">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="university" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+
+
+</xs:schema>
